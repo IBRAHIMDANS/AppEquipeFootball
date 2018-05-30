@@ -1,0 +1,190 @@
+<Button>:
+    font_size:20
+    color: 1,1,1,1
+
+<Label>:
+    markup: True
+
+<ConnexionScreen>:
+
+    name:"connexion"
+    canvas.before:
+        Rectangle:
+            source: "arbitre.jpg"
+            pos:self.pos
+            size:self.size
+    BoxLayout:
+    BoxLayout:
+        orientation : 'vertical'
+        padding: '30sp'
+        BoxLayout:
+        BoxLayout:
+            size_hint_y: 1
+            orientation: 'horizontal'
+            Label:
+            Label:
+                text:"Identifiant"
+                size_hint: 0.5,1
+        BoxLayout:
+            size_hint_y: 1
+            orientation: 'horizontal'
+            Label:
+            TextInput:
+                id: username
+                text:""
+                size_hint: 0.5,0.8
+        BoxLayout:
+            orientation:'horizontal'
+            Label:
+            Label:
+                text:"Password"
+                size_hint: 0.5,1
+        BoxLayout:
+            orientation:'horizontal'
+            Label:
+            TextInput:
+                id: passwd
+                password:True
+                size_hint: 0.5,0.8
+        BoxLayout:
+            orientation:'horizontal'
+            Label:
+            Button:
+                text:"Connexion"
+                on_press: root.login()
+                #on_release: root.reset()
+                size_hint: 0.5,0.7
+        BoxLayout:
+        BoxLayout:
+
+
+<EquipScreen>:
+
+    equipDomicile: equipDomicileID
+    equipExterieur: equipExterieurID
+
+    name:"equip"
+    canvas.before:
+        Rectangle:
+            source: "ligue.jpg"
+            pos:self.pos
+            size:self.size
+    BoxLayout:
+        id: equipDomicileID
+        size_hint: 0.25,0.1
+        pos_hint: {'x':0.01,'y': 0.6}
+    BoxLayout:
+        id: equipExterieurID
+        size_hint: 0.25,0.1
+        pos_hint: {'x':0.740,'y': 0.6}
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '10sp'
+
+        BoxLayout:
+            orientation:'horizontal'
+            Label:
+            Label:
+        BoxLayout:
+            orientation:'horizontal'
+            Label:
+            Button:
+                on_press: root.checking()
+                on_release: app.root.current = "ecran"
+                text: "Debut du match"
+                size_hint: 0.5,0.2
+            Label:
+
+<EcranScreen>:
+
+    buteurDomicile: ButeurDomicileID
+    buteurExterieur: ButeurExterieurID
+
+    name:"ecran"
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Temps"
+        Label:
+            id: time2
+            text: root.text
+        Label:
+            text: "Score"
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: str(root.score_dom)
+            Label:
+                text:"-"
+            Label:
+                text: str(root.score_ext)
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                text:"But domicile"
+                on_press: root.augmenterDom()
+            Button:
+                text:"- But domicile"
+                on_press: root.diminuerDom()
+            Button:
+                text: "But exterieur"
+                on_press: root.augmenterExt()
+            Button:
+                text:"- But Exterieur"
+                on_press: root.diminuerExt()
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: "Choix Buteur Domicile"
+            Label:
+                text: "Choix Buteur Extérieur"
+        BoxLayout:
+            orientation: 'horizontal'
+            id: ButeurExterieurID
+            BoxLayout:
+                id: ButeurDomicileID
+        Button:
+            text: "Fin de match"
+            on_press: root.reinit()
+            on_release: app.root.current = "stat"
+
+<StatScreen>:
+
+    name:"stat"
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    id: idDom
+                    text: ""
+                Label:
+                    text : "Buteurs : "
+                Label:
+                    id: listeDom
+                    text : ""
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    id: idExt
+                    text: ""
+                Label:
+                    text : "Buteurs : "
+                Label:
+                    id: listeExt
+                    text: ""
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: '10sp'
+            Label:
+            Button:
+                text: "Quitter"
+                on_press: app.stop()
+                background_color: 198, 11, 43
+                size_hint: 0.5,0.2
+                pos: 100,100
+            Label:
+                
+            
